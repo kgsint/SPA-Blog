@@ -11,7 +11,8 @@ class PostController extends Controller
 
     public function index()
     {
-        return PostResource::collection(Post::wherePublished(true)->get());
+
+        return PostResource::collection(Post::with(['user'])->wherePublished(true)->get());
     }
 
     public function store(Request $request)

@@ -17,10 +17,12 @@ class PostResource extends JsonResource
         return [
             'uuid' => $this->uuid,
             'title' => $this->title,
+            'user' => UserResource::make($this->whenLoaded('user')),
             'body' => $this->body,
             'slug' => $this->slug,
             'excerpt' => $this->excerpt,
             'published' => $this->published,
+            'published_at' => DatetimeResource::make($this->updated_at),
          ];
     }
 }

@@ -24,6 +24,7 @@ class PostFactory extends Factory
             'title' => $title,
             'slug' => Str::slug($title),
             'excerpt' => substr($body, 0, 150),
+            'user_id' => rand(1,5),
             'body' => $body,
         ];
     }
