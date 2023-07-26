@@ -1,9 +1,26 @@
 <script setup>
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRouter } from 'vue-router';
+import { useStore } from '../stores/useStore';
 
 const toggleMobileNav = () => {
     document.querySelector('#navbar-sticky').classList.toggle('hidden')
 }
+
+const store = useStore()
+const router = useRouter()
+
+const logout = async () => {
+    
+    try {
+        store.authenticated = false
+        await store.logout()
+
+        router.replace({ name: 'home' })
+    }catch(e) {
+        console.log(e)
+    }
+}
+
 </script>
 
 <template>
@@ -13,8 +30,12 @@ const toggleMobileNav = () => {
                 Bloggie
             </RouterLink>
             <div class="flex md:order-2">
-                <RouterLink :to="{ name: 'login' }" type="button"
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</RouterLink>
+                <form @submit.prevent="logout" id="logout-form"></form>
+                <button form="logout-form"  v-if="store.isAuthenticated" :to="{ name: 'login' }" type="submit"
+                    class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0">Logout</button>
+                <RouterLink v-else :to="{ name: 'login' }" type="button"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0">Login</RouterLink>
+
                 <button @click="toggleMobileNav" data-collapse-toggle="navbar-sticky" type="button"
                     class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                     aria-controls="navbar-sticky" aria-expanded="false">

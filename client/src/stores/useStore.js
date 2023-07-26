@@ -37,6 +37,12 @@ export const useStore = defineStore('store', {
       this.authenticated = true
 
       this.authenticate()
+    },
+    async logout() {
+      await axios.get('/sanctum/csrf-cookie')
+      await axios.post('/logout')
+
+      this.authenticated = false
     }
   }
 })

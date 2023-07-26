@@ -34,6 +34,15 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: Login,
+      beforeEnter: (from, to, next) => {
+        const store = useStore()
+ 
+        if(store.isAuthenticated) {
+         return next({ name: 'home'})
+        }
+ 
+        return next();
+       }
     },
     {
       path: '/admin/posts',
