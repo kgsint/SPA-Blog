@@ -4,6 +4,8 @@ import SinglePost from '../views/SinglePost.vue'
 import Login from '../views/Login.vue'
 import AdminPosts from '../views/Admin/Posts.vue'
 import AdminEditPost from '../views/Admin/PostEdit.vue'
+import NotFound from '../views/404.vue'
+
 
 import { useStore } from '../stores/useStore'
 
@@ -62,6 +64,11 @@ const router = createRouter({
        return next();
       }
     },
+    {
+      path: "/:pathMatch(.*)*",
+      name: 'not-found',
+      component: NotFound
+    }
   ]
 })
 
