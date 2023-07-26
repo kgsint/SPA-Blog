@@ -19,7 +19,9 @@ class PostEditResource extends JsonResource
             'title' => $this->title,
             'body' => $this->body,
             'slug' => $this->slug,
-            'published' => $this->published,
+            'published' => $this->isPublished(),
+            'published_at' => $this->published_at,
+            'current_timestamp' => now(),
         ];
     }
 }

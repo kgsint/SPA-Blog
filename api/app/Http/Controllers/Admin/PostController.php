@@ -41,9 +41,8 @@ class PostController extends Controller
             'excerpt' => 'nullable',
             'slug' => 'required|string|unique:posts,slug,' . $post->id,
             'body' => 'nullable',
-            'published' => 'boolean',
         ]);
 
-        $post->update($request->only('title', 'slug', 'excerpt', 'body', 'published'));
+        $post->update($request->only('title', 'slug', 'excerpt', 'body', 'published_at'));
     }
 }

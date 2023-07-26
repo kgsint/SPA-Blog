@@ -12,7 +12,7 @@ class PostController extends Controller
     public function index()
     {
 
-        return PostResource::collection(Post::with(['user'])->wherePublished(true)->get());
+        return PostResource::collection(Post::with(['user'])->whereNotNull('published_at')->get());
     }
 
     public function store(Request $request)

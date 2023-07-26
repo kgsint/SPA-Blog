@@ -25,6 +25,11 @@ class Post extends Model
         });
     }
 
+    public function isPublished(): bool
+    {
+        return !is_null($this->published_at);
+    }
+
     // eloquent relationship
     public function user(): BelongsTo
     {

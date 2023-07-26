@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -14,6 +15,9 @@ class PostResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $published_at = new DateTime($this->published_at);
+        $published_at = $published_at->format('d M, Y');
+
         return [
             'uuid' => $this->uuid,
             'title' => $this->title,
@@ -21,8 +25,8 @@ class PostResource extends JsonResource
             'body' => $this->body,
             'slug' => $this->slug,
             'excerpt' => $this->excerpt,
-            'published' => $this->published,
-            'published_at' => DatetimeResource::make($this->updated_at),
+            'published' => $this->isPublished(),
+            'published_at' => $published_at,
          ];
     }
 }
