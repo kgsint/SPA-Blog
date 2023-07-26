@@ -28,6 +28,20 @@ const reslug = () => {
     post.value.slug = slug ? slugify(slug, { strict: true }) : post.value.uuid
 }
 
+const togglePublish = () => {
+    if(post.value.published) {
+        post.value.published = false
+        post.value.published_at = null
+    }else {
+        post.value.published = true
+
+        const date = new Date()
+        const formattedDate = date.toISOString().slice(0, 19).replace('T', ' ');
+
+        post.value.published_at = formattedDate
+    }
+}
+
 onMounted(async () => {
     await fetchPost(props.slug)
 
@@ -41,13 +55,12 @@ onMounted(async () => {
 })
 
 
+
+
 </script>
 
 
 <template>
-
-    
-
     <div>
         <div class="absolute top-0 left-0 flex justify-between items-center px-8 py-6 w-full space-x-6">
             <div class="flex flex-grow items-center">
@@ -66,7 +79,7 @@ onMounted(async () => {
                 </div>
                 <div>
                     <button 
-                        @click="post.published = !post.published"
+                        @click="togglePublish"
                         class="bg-gray-100 px-4 py-2 rounded-full text-xs font-bold duration-150 hover:bg-gray-200">
                         <span v-if="!post.published">Publish</span>
                         <span v-else class="text-red-400">Unpublish</span>
