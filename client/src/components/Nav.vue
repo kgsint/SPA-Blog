@@ -1,11 +1,14 @@
 <script setup>
-import { RouterLink, useRouter } from 'vue-router';
+import { RouterLink, useRouter, useRoute } from 'vue-router';
 import { useStore } from '../stores/useStore';
 
 const toggleMobileNav = () => {
     document.querySelector('#navbar-sticky').classList.toggle('hidden')
 }
 
+const route = useRouter()
+
+console.log(route.currentRoute.value.name)
 const store = useStore()
 const router = useRouter()
 
@@ -52,12 +55,16 @@ const logout = async () => {
                     class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">
                     <li>
                         <RouterLink :to="{ name: 'home' }"
-                            class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0"
+                            :class="{ 'md:text-blue-500': route.currentRoute.value.name === 'home'}"
                             aria-current="page">Home</RouterLink>
                     </li>
                     <li>
                         <RouterLink :to="{ name: 'admin-posts' }"
-                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Dashboard</RouterLink>
+                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0"
+                            :class="{ 'md:text-blue-500': route.currentRoute.value.name === 'admin-posts'}">
+                            Dashboard
+                        </RouterLink>
                     </li>
             </ul>
         </div>
