@@ -51,6 +51,8 @@ export const useStore = defineStore('store', {
       await axios.post('/logout')
 
       this.authenticated = false
+      
+      this.authenticate()
     }
   }
 })
