@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import SinglePost from '../views/SinglePost.vue'
-import Login from '../views/Login.vue'
+import Login from '../views/Auth/Login.vue'
 import AdminPosts from '../views/Admin/Posts.vue'
 import AdminEditPost from '../views/Admin/PostEdit.vue'
 import NotFound from '../views/404.vue'
