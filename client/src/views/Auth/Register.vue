@@ -21,6 +21,8 @@ const register = async () => {
         
         // reset form
         resetForm()
+
+        router.replace({ name: 'home' })
     }catch(e) { 
         if(e.response.status === 422) {
             errors.value = e.response.data.errors
