@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import SinglePost from '../views/SinglePost.vue'
 import Login from '../views/Auth/Login.vue'
+import Register from '../views/Auth/Register.vue'
 import AdminPosts from '../views/Admin/Posts.vue'
 import AdminEditPost from '../views/Admin/PostEdit.vue'
 import NotFound from '../views/404.vue'
@@ -34,6 +35,20 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: Login,
+      beforeEnter: (from, to, next) => {
+        const store = useStore()
+ 
+        if(store.isAuthenticated) {
+         return next({ name: 'home'})
+        }
+ 
+        return next();
+       }
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: Register,
       beforeEnter: (from, to, next) => {
         const store = useStore()
  

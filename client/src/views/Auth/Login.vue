@@ -6,7 +6,7 @@ import { useRouter } from 'vue-router';
 const store = useStore()
 const router = useRouter()
 
-const errors = ref({})
+const errors = ref({}) // validation errors
 const form = reactive({
     email: '',
     password: '',
@@ -59,8 +59,12 @@ const login = async () => {
                     </div>
             </div>
 
-            <button type="submit"
+            <div class="flex justify-between items-center">
+                <button type="submit"
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+
+                <RouterLink :to="{ name: 'register' }" class="text-blue-500 hover:underline">Don't have an account?</RouterLink>
+            </div>
         </form>
 
     </div>
