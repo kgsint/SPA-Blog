@@ -60,7 +60,7 @@ onMounted(async () => {
 
 <template>
     <div>
-        <div class="absolute top-0 left-0 flex justify-between items-center px-8 py-6 w-full space-x-6">
+        <div class="flex justify-between items-center px-8 py-6 w-full space-x-6">
             <div class="flex flex-grow items-center">
                 <span class="font-bold mr-1">/</span> 
                 <input 
@@ -73,7 +73,7 @@ onMounted(async () => {
             </div>
             <div class="flex items-center space-x-4">
                 <div>
-                    <span class="text-sm font-semibold">Autosave</span>
+                    <span class="text-sm font-semibold">Autosaved</span>
                 </div>
                 <div>
                     <button 

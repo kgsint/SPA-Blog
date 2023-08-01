@@ -8,7 +8,6 @@ const toggleMobileNav = () => {
 
 const route = useRouter()
 
-console.log(route.currentRoute.value.name)
 const store = useStore()
 const router = useRouter()
 
