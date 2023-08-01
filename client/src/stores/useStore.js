@@ -30,6 +30,14 @@ export const useStore = defineStore('store', {
           return 
         }
     },
+    async register(credentials) {
+      await axios.get('/sanctum/csrf-cookie')
+      await axios.post('/register', credentials)
+
+      this.authenticated = true
+
+      this.authenticate()
+    },
     async login(credentials) {
       await axios.get('/sanctum/csrf-cookie')
       await axios.post('/login', credentials)
